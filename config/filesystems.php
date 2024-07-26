@@ -33,15 +33,25 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
-            'throw' => false,
+            'throw' => false
         ],
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
             'throw' => false,
+			'visibillity'=> 'public',
+			'permissions' => [
+				'file' => [
+					'public' => 0644,
+					'private' => 0644,
+				],
+				'dir' => [
+					'public' => 0755,
+					'private' => 0755,
+				],
+			],
         ],
 
         's3' => [
@@ -69,8 +79,8 @@ return [
     |
     */
 
-    'links' => [
-        public_path('storage') => storage_path('app/public'),
+	'links' => [
+        public_path('foto_santri') => storage_path('app/public'),
     ],
 
 ];

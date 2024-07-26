@@ -1,371 +1,488 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('dashboard.layouts.main')
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+@section('content')
+<!-- counter start -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-center flex-wrap" id="counter">
+            <div class="col-6 col-lg-3">
+                <div class="text-center my-3 counter-box">
+                    <div class="counter-content">
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $jumlahSantriBeranda }}" data-purecounter-duration="1" class="purecounter" style="font-size: 2rem; font-weight: bold;"></span>
+                        <p class="counter-name text-muted mb-0 text-uppercase" style="font-size: 1rem;">Total Santri</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="text-center my-3 counter-box">
+                    <div class="counter-content">
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $jumlahSantriAktifBeranda }}" data-purecounter-duration="1" class="purecounter" style="font-size: 2rem; font-weight: bold;"></span>
+                        <p class="counter-name text-muted mb-0 text-uppercase" style="font-size: 1rem;">Santri Aktif</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="text-center my-3 counter-box">
+                    <div class="counter-content">
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $jumlahSantriAlumni }}" data-purecounter-duration="1" class="purecounter" style="font-size: 2rem; font-weight: bold;"></span>
+                        <p class="counter-name text-muted mb-0 text-uppercase" style="font-size: 1rem;">Alumni</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="text-center my-3 counter-box">
+                    <div class="counter-content">
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $jumlahGuru }}" data-purecounter-duration="1" class="purecounter" style="font-size: 2rem; font-weight: bold;"></span>
+                        <p class="counter-name text-muted mb-0 text-uppercase" style="font-size: 1rem;">Guru</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- counter end -->
 
-  <title>AL-AKHYAR</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-<link href="{{asset('home/assets/img/favicon.png')}}" rel="icon">
-<link href="{{asset('home/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-<!-- Vendor CSS Files -->
-<link href="{{asset('home/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{asset('home/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-<link href="{{asset('home/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-<link href="{{asset('home/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-<link href="{{asset('home/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-<link href="{{asset('home/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-
-<!-- Template Main CSS File -->
-<link href="{{asset('home/assets/css/style.css')}}" rel="stylesheet">
+<style>
+    .counter-box {
+        border: 1px solid #ddd; /* Border color */
+        border-radius: 8px; /* Rounded corners */
+        padding: 20px; /* Padding inside the box */
+    }
 
 
-  <!-- =======================================================
-  * Template Name: KnightOne
-  * Template URL: https://bootstrapmade.com/knight-simple-one-page-bootstrap-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+</style>
 
-<body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container-fluid">
+     <!-- About start -->
+     <section class="section bg-light" id="pendaftaran">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 col-lg-6 text-center">
+                    <h6 class="subtitle">INFORMASI PENDAFTARAN</h6>
+                    <h2 class="title">المعهد الديني أالأخيار</h2>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mt-5">
+                        <div class="about-icon ms-3">
+                        </div>
+                        <h5 class="fs-22 mt-4 pt-3 mb-3">Madrasah Ibtidaiyah (MI)</h5>
+                        <p class="text-muted">Jenjang pendidikan dasar dengan fokus pada pendidikan agama Islam.</p>
+                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="modal" data-bs-target="#modalMI">More About <i class="mdi mdi-arrow-right fs-14 ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mt-5">
 
-      <div class="row justify-content-center">
-        <div class="col-xl-9 d-flex align-items-center justify-content-lg-between">
-          <h1 class="logo me-auto me-lg-0"><a href="index.html">AL-AKHYAR</a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                        <h5 class="fs-22 mt-4 pt-3 mb-3">Madrasah Tsanawiyah (MTs)</h5>
+                        <p class="text-muted">Jenjang pendidikan menengah pertama dengan pendidikan umum dan agama.</p>
+                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="modal" data-bs-target="#modalMTs">More About <i class="mdi mdi-arrow-right fs-14 ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mt-5">
 
-          <nav id="navbar" class="navbar order-last order-lg-0">
-            <ul>
-              <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-              <li><a class="nav-link scrollto" href="#about">About</a></li>
-              <li><a class="nav-link scrollto" href="#services">Dokumentasi</a></li>
-              <li><a class="nav-link scrollto " href="#portfolio">Brosur</a></li>
-              <li><a class="nav-link scrollto" href="#pricing">Lokasi</a></li>
-              <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                        <h5 class="fs-22 mt-4 pt-3 mb-3">Madrasah Aliyah (MA)</h5>
+                        <p class="text-muted">Jenjang pendidikan menengah atas dengan fokus pada ilmu agama dan umum.</p>
+                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="modal" data-bs-target="#modalMA">More About <i class="mdi mdi-arrow-right fs-14 ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mt-5">
+
+                        <h5 class="fs-22 mt-4 pt-3 mb-3">SMP</h5>
+                        <p class="text-muted">Sekolah Menengah Pertama dengan pengembangan karakter dan akhlak.</p>
+                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="modal" data-bs-target="#modalSMP">More About <i class="mdi mdi-arrow-right fs-14 ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mt-5">
+
+                        <h5 class="fs-22 mt-4 pt-3 mb-3">SMA</h5>
+                        <p class="text-muted">Sekolah Menengah Atas dengan persiapan untuk pendidikan tinggi.</p>
+                        <a href="javascript:void(0);" class="text-danger" data-bs-toggle="modal" data-bs-target="#modalSMA">More About <i class="mdi mdi-arrow-right fs-14 ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+ <!-- Modal MI -->
+ <div class="modal fade" id="modalMI" tabindex="-1" aria-labelledby="modalMILabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMILabel">Madrasah Ibtidaiyah (MI)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Madrasah Ibtidaiyah adalah jenjang pendidikan dasar yang setara dengan sekolah dasar (SD) dengan penekanan pada pendidikan agama Islam. Kurikulum MI mencakup pelajaran umum dan agama, yang bertujuan membentuk karakter siswa yang berakhlak mulia dan memiliki pengetahuan dasar yang kuat.
+            </div>
+            <div class="modal-footer">
+                <a href="https://wa.me/082932403284" target="_blank" class="btn btn-success">Hubungi Kami di WhatsApp</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal MTs -->
+<div class="modal fade" id="modalMTs" tabindex="-1" aria-labelledby="modalMTsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMTsLabel">Madrasah Tsanawiyah (MTs)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Madrasah Tsanawiyah adalah jenjang pendidikan menengah pertama yang setara dengan SMP. MTs memberikan pendidikan umum dan agama dengan tujuan mengembangkan potensi siswa secara menyeluruh, baik dalam aspek akademik maupun spiritual.
+            </div>
+            <div class="modal-footer">
+                <a href="https://wa.me/082932403284" target="_blank" class="btn btn-success">Hubungi Kami di WhatsApp</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal MA -->
+<div class="modal fade" id="modalMA" tabindex="-1" aria-labelledby="modalMALabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMALabel">Madrasah Aliyah (MA)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Madrasah Aliyah adalah jenjang pendidikan menengah atas yang setara dengan SMA. MA menekankan pada pendidikan agama Islam serta ilmu pengetahuan umum, membekali siswa dengan pengetahuan dan keterampilan yang diperlukan untuk melanjutkan ke pendidikan tinggi atau memasuki dunia kerja.
+            </div>
+            <div class="modal-footer">
+                <a href="https://wa.me/082932403284" target="_blank" class="btn btn-success">Hubungi Kami di WhatsApp</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal SMP -->
+<div class="modal fade" id="modalSMP" tabindex="-1" aria-labelledby="modalSMPLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalSMPLabel">SMP</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Sekolah Menengah Pertama (SMP) di Pondok Al-Akhyar menawarkan pendidikan umum dengan penekanan pada pengembangan karakter dan akhlak siswa. Kurikulum yang komprehensif dan kegiatan ekstrakurikuler yang beragam membantu siswa mengembangkan bakat dan minat mereka.
+            </div>
+            <div class="modal-footer">
+                <a href="https://wa.me/082932403284" target="_blank" class="btn btn-success">Hubungi Kami di WhatsApp</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal SMA -->
+<div class="modal fade" id="modalSMA" tabindex="-1" aria-labelledby="modalSMALabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalSMALabel">SMA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Sekolah Menengah Atas (SMA) di Pondok Al-Akhyar menawarkan pendidikan umum yang komprehensif dengan fokus pada persiapan siswa untuk pendidikan tinggi. Program pendidikan yang disesuaikan dengan kebutuhan siswa membantu mereka mencapai potensi maksimal dan siap menghadapi tantangan masa depan.
+            </div>
+            <div class="modal-footer">
+                <a href="https://wa.me/082932403284" target="_blank" class="btn btn-success">Hubungi Kami di WhatsApp</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <section class="hero-5" id="home">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <h1 class="mb-4 display-5 fw-semibold">Pendaftaran Online Santri Baru Pondok Al-Akhyar</h1>
+                    <p class="text-muted fs-17">Bergabunglah dengan Pondok Pesantren Al-Akhyar untuk mendapatkan pendidikan agama dan umum yang berkualitas. Isi formulir di bawah ini untuk mendaftar sebagai santri baru.</p>
+                    <a href="javascript:void(0);" class="btn btn-lg btn-gradient-success mt-4 mb-4 mb-lg-0">Download Formulir <i class="mdi mdi-arrow-right fs-14 ms-1"></i></a>
+                </div>
+    
+                <div class="col-md-8 col-lg-5 offset-lg-1">
+                    <div class="card mb-0">
+                        <div class="card-body p-4">
+                            <h5 class="border-bottom fs-22 pb-3 mb-4">Formulir Pendaftaran Santri</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="formFullname" class="form-label text-muted fs-14">Nama Lengkap <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="formFullname" placeholder="Nama...">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formBirthdate" class="form-label text-muted fs-14">Tanggal Lahir <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="formBirthdate">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formAddress" class="form-label text-muted fs-14">Alamat <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="formAddress" placeholder="Alamat...">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formPhone" class="form-label text-muted fs-14">Nomor Telepon <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="formPhone" placeholder="Nomor Telepon...">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formEmail" class="form-label text-muted fs-14">Alamat Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="formEmail" placeholder="Email...">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="formParentName" class="form-label text-muted fs-14">Nama Orang Tua/Wali <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="formParentName" placeholder="Nama Orang Tua/Wali...">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Daftar Sekarang</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- About end -->
+
+   <!-- Galeri Kami start -->
+<section class="section" id="galeri">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8 col-lg-6 text-center">
+                <h6 class="subtitle">Galeri Kami</h6>
+                <h2 class="title">Momen Berharga di Pondok Pesantren Al-Akhyar</h2>                    
+            </div>
+        </div>
+
+        <div class="row">
+            <ul class="col busi-container-filter categories-filter text-center" id="filter">
+                <li><a class="categories tab-active" onclick="filterSelection('all')">Semua Kegiatan</a></li>
+                <li><a class="categories tab-active" onclick="filterSelection('kegiatan')">Kegiatan Santri</a></li>
+                <li><a class="categories tab-active" onclick="filterSelection('acara')">Acara Khusus</a></li>
+                <li><a class="categories tab-active" onclick="filterSelection('lingkungan')">Lingkungan Pondok</a></li>
+                <li><a class="categories tab-active" onclick="filterSelection('prestasi')">Prestasi</a></li>
             </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-          </nav><!-- .navbar -->
-
-          <a href="{{route('login')}}" class="get-started-btn scrollto">Login</a>
-        </div>
-      </div>
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xl-8">
-          <h1>PONDOK PESANTREN</h1>
-          <h1>AL-AKHYAR</h1>
-          <h2>Mencetak Anak Sholeh, Menggapai Masa Depan Gemilang</h2>
-          <a href="https://youtu.be/FIqtKUk-bIs?si=hl864mfb-hsXsJ-q" class="glightbox play-btn mb-4"></a>
-        </div>
-      </div>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-<!-- ======= About Us Section ======= -->
-<section id="about" class="about">
-    <div class="container">
-      <div class="section-title">
-        <h2>About Us</h2>
-        <p>Pondok pesantren al akhyar menurut manuskrip catatan yang ditulis oleh KH. Muhammad sholeh (1250-1337H atau 1834-1919M) atau yang dikenal dengan nama Kiai Pacitan didirikan oleh Ny. Ali/ ummu Ali yaitu putri dari Kiai Abdul Adzim ( dalam masa kisaran 1700M/1111H) Bersama suaminya (belum diketahui nama suami beliau), selanjutnya kepengasuhan digantikan oleh anak beliau yang tertua yaitu kiai Ali pulasari, beliau memiliki beberapa saudara yaitu kiai kayu ageng, kiai minhu,kiai dural, bindoro sahal, bindoro mahmud, bindoro Wahab, Ny. qosan dan yang terakhir adalah Ny. Maryam. Setelah itu kepengasuhan digantikan kepada ny. Qosan dengan suaminya dan kiai ali hijrah ke desa pulasari dan melanjutkan dakwahnya disana. Namun tidak berselang lama Ny. Qosan juga hijrah ikut keruamh suaminya, kemudian kepengasuhan dilanjutkan oleh Ny. Maryam dan suaminya.</p>
-      </div>
-  
-      <div class="row content">
-        <div class="col-lg-6 pt-4 pt-lg-0">
-            <a href="/public/PROFIL PONDOK PESANTREN AL AKHYAR.pdf" target="_blank" download="profile.pdf" class="btn-learn-more">Download Profile</a>        </div>
-      </div>
-    </div>
-  </section>
-  
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-9 text-center text-lg-start">
-            <h3>Call To Action</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Cta Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-6 order-2 order-lg-1">
-            <div class="icon-box mt-5 mt-lg-0">
-              <i class="bx bx-receipt"></i>
-              <h4>Est labore ad</h4>
-              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-            </div>
-            <div class="icon-box mt-5">
-              <i class="bx bx-cube-alt"></i>
-              <h4>Harum esse qui</h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-            </div>
-            <div class="icon-box mt-5">
-              <i class="bx bx-images"></i>
-              <h4>Aut occaecati</h4>
-              <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-            </div>
-            <div class="icon-box mt-5">
-              <i class="bx bx-shield"></i>
-              <h4>Beatae veritatis</h4>
-              <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
-            </div>
-          </div>
-          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/features.jpg");'></div>
-        </div>
-
-      </div>
-    </section><!-- End Features Section -->
-
-
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
-      <div class="container">
-
-        <div class="text-center title">
-          <h3>What we have achieved so far</h3>
-          <p>Iusto et labore modi qui sapiente xpedita tempora et aut non ipsum consequatur illo.</p>
-        </div>
-
-        <div class="row counters position-relative">
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Clients</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hard Workers</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Counts Section -->
-
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-      </div>
-      <div class="container">
-
-        <div class="row mt-5">
-
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class="ri-map-pin-line"></i>
-                <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
-
-              <div class="email">
-                <i class="ri-mail-line"></i>
-                <h4>Email:</h4>
-                <p>info@example.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="ri-phone-line"></i>
-                <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+        <!-- Galeri -->
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-xl-4 filter-box kegiatan acara">
+                <div class="card item-box rounded mt-4 overflow-hidden">
+                    <div class="position-relative">
+                        <img class="item-container img-fluid" src="{{ asset ('landing/images/agency/project-img/gambar1.jpg') }}" alt="Kegiatan Santri" />
+                        <div class="item-mask mfp-image" data-src="{{ asset ('landing/images/agency/project-img/gambar1.jpg') }}" data-gallery="myGal"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fs-18 mb-1">Kegiatan Santri di Hari Raya</h5>
+                        <p class="text-muted mb-0">Kegiatan</p>
+                    </div>
                 </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+            </div>
 
-          </div>
+            <div class="col-md-6 col-xl-4 filter-box acara">
+                <div class="card item-box rounded mt-4">
+                    <div class="position-relative">
+                        <img class="item-container img-fluid rounded" src="{{ asset ('landing/images/agency/project-img/gambar2.jpg') }}" alt="Acara Khusus" />
+                        <div class="item-mask mfp-image" data-src="{{ asset ('landing/images/agency/project-img/gambar2.jpg') }}" data-gallery="myGal"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fs-18 mb-1">Acara Wisuda Santri</h5>
+                        <p class="text-muted mb-0">Acara Khusus</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 filter-box lingkungan">
+                <div class="card item-box rounded mt-4">
+                    <div class="position-relative">
+                        <img class="item-container img-fluid rounded" src="{{ asset ('landing/images/agency/project-img/gambar3.jpg') }}" alt="Lingkungan Pondok" />
+                        <div class="item-mask mfp-image" data-src="{{ asset ('landing/images/agency/project-img/gambar3.jpg') }}" data-gallery="myGal"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fs-18 mb-1">Lingkungan Pondok Pesantren</h5>
+                        <p class="text-muted mb-0">Lingkungan</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 filter-box prestasi">
+                <div class="card item-box rounded mt-4">
+                    <div class="position-relative">
+                        <img class="item-container img-fluid rounded" src="{{ asset ('landing/images/agency/project-img/gambar4.jpg') }}" alt="Prestasi" />
+                        <div class="item-mask mfp-image" data-src="{{ asset ('landing/images/agency/project-img/gambar4.jpg') }}" data-gallery="myGal"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fs-18 mb-1">Prestasi Santri di Kompetisi</h5>
+                        <p class="text-muted mb-0">Prestasi</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-xl-4 filter-box acara">
+                <div class="card item-box rounded mt-4">
+                    <div class="position-relative">
+                        <img class="item-container img-fluid rounded" src="{{ asset ('landing/images/agency/project-img/gambar5.jpg') }}" alt="Acara Khusus" />
+                        <div class="item-mask mfp-image" data-src="{{ asset ('landing/images/agency/project-img/gambar5.jpg') }}" data-gallery="myGal"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fs-18 mb-1">Acara Bazar Kegiatan Sosial</h5>
+                        <p class="text-muted mb-0">Acara Khusus</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4 filter-box lingkungan">
+                <div class="card item-box rounded mt-4">
+                    <div class="position-relative">
+                        <img class="item-container img-fluid rounded" src="{{ asset ('landing/images/agency/project-img/gambar6.jpg') }}" alt="Lingkungan Pondok" />
+                        <div class="item-mask mfp-image" data-src="{{ asset ('landing/images/agency/project-img/gambar6.jpg') }}" data-gallery="myGal"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fs-18 mb-1">Pemandangan Pondok Pesantren</h5>
+                        <p class="text-muted mb-0">Lingkungan</p>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <h3>AL-AKHYAR</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <strong><span>AL-AKHYAR</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/knight-simple-one-page-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+    </div>       
+ </div>
     </div>
-  </footer><!-- End Footer -->
+</section>
+<!-- Galeri Kami end -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="{{asset('home/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
-  <script src="{{asset('home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('home/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{asset('home/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{asset('home/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <script src="{{asset('home/assets/vendor/php-email-form/validate.js')}}"></script>
+   <!-- Testimonials start -->
+<section class="section testi-bg" id="testimonial">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8 col-lg-6 text-center">
+                <h6 class="subtitle text-dark">Testimoni</h6>
+                <h2 class="title">Pendapat Santri dan Orang Tua</h2>
+                <p class="text-muted">Kami senantiasa berusaha memberikan yang terbaik bagi para santri dan mendapatkan umpan balik yang berharga dari mereka.</p>
+            </div>
+        </div>
 
-  <!-- Template Main JS File -->
-  <script src="{{asset('home/assets/js/main.js')}}"></script>
+        <div class="row testi-row">
+            <div class="col-12">
+                <!-- Swiper -->
+                <div class="clients-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="card shadow-lg">
+                                <div class="card-body p-4">
+                                    <img src="{{ asset ('landing/images/users/user-1.jpg') }}" alt="" class="rounded-circle shadow-lg" width="60" />
+                                    <h5 class="my-4 pt-2 fs-18 lh-base">" Saya sangat senang dengan pendidikan yang diberikan di Pondok Pesantren Al-Akhyar. Guru-gurunya sangat peduli dan berpengalaman."</h5>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                                    <h6 class="mb-0">Ahmad Fauzi</h6>
+                                    <p class="mb-0">Santri</p>
+                                    <div class="position-absolute bottom-0 end-0">
+                                        <img src="{{ asset ('landing/images/agency/quote.png') }}" alt="" height="45" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card shadow-lg">
+                                <div class="card-body p-4">
+                                    <img src="{{ asset ('landing/images/users/user-2.jpg') }}" alt="" class="rounded-circle shadow-lg" width="60" />
+                                    <h5 class="my-4 pt-2 fs-18 lh-base">" Lingkungan yang kondusif dan mendukung perkembangan anak saya. Saya sangat puas dengan program-program yang ada di sini.”</h5>
 
-</body>
+                                    <h6 class="mb-0">Nurul Aini</h6>
+                                    <p class="mb-0">Orang Tua</p>
+                                    <div class="position-absolute bottom-0 end-0">
+                                        <img src="{{ asset ('landing/images/agency/quote.png') }}" alt="" height="45" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card shadow-lg">
+                                <div class="card-body p-4">
+                                    <img src="{{ asset ('landing/images/users/user-3.jpg') }}" alt="" class="rounded-circle shadow-lg" width="60" />
+                                    <h5 class="my-4 pt-2 fs-18 lh-base">" Program Tahfidz di Pondok Pesantren Al-Akhyar sangat membantu saya dalam menghafal Al-Quran."</h5>
 
-</html>
+                                    <h6 class="mb-0">Rina Salsabila</h6>
+                                    <p class="mb-0">Santri</p>
+                                    <div class="position-absolute bottom-0 end-0">
+                                        <img src="{{ asset ('landing/images/agency/quote.png') }}" alt="" height="45" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials end -->
+
+
+
+
+<!-- team start -->
+<section class="section" id="team">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8 col-lg-6 text-center">
+                <h6 class="subtitle">Tim Kami</h6>
+                <h2 class="title">Tim Hebat di Pondok Pesantren Al-Akhyar</h2>
+                <p class="text-muted">Kami memiliki tim yang berdedikasi dan berpengalaman untuk mendidik dan membimbing santri menuju masa depan yang cerah.</p>
+            </div>
+        </div>
+
+        <div class="team-carousel">
+            <div class="team-item">
+                <div class="team-bg rounded text-center">
+                    <img src="{{ asset ('landing/images/agency/team/human.png') }}" alt="Ustadz Ahmad" class="img-fluid" />
+                </div>
+                <h5 class="fs-18 mb-0 mt-3">Ustadz Ahmad</h5>
+                <p class="text-muted fs-15 mb-4 mb-lg-0">Pimpinan Pondok</p>
+            </div>
+            <div class="team-item">
+                <div class="team-bg rounded text-center">
+                    <img src="{{ asset ('landing/images/agency/team/human.png') }}" alt="Ustadzah Nurul" class="img-fluid" />
+                </div>
+                <h5 class="fs-18 mb-0 mt-3">Ustadzah Nurul</h5>
+                <p class="text-muted fs-15 mb-4 mb-lg-0">Kepala Sekolah</p>
+            </div>
+            <div class="team-item">
+                <div class="team-bg rounded text-center">
+                    <img src="{{ asset ('landing/images/agency/team/human.png') }}" alt="Ustadz Ali" class="img-fluid" />
+                </div>
+                <h5 class="fs-18 mb-0 mt-3">Ustadz Ali</h5>
+                <p class="text-muted fs-15 mb-4 mb-lg-0">Guru Tahfidz</p>
+            </div>
+            <div class="team-item">
+                <div class="team-bg rounded text-center">
+                    <img src="{{ asset ('landing/images/agency/team/human.png') }}" alt="Ustadzah Siti" class="img-fluid" />
+                </div>
+                <h5 class="fs-18 mb-0 mt-3">Ustadzah Siti</h5>
+                <p class="text-muted fs-15 mb-4 mb-lg-0">Guru Agama</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- team end -->
+
+<br>
+<br>
+<br>
+<!-- team end -->
+
+
+@endsection

@@ -5,92 +5,99 @@ namespace App\Http\Controllers;
 use App\Models\Santri;
 use App\Models\Dispensasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Exports\DispensasiExport;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DispensasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $dispensasi = Dispensasi::all();
-        return view('dashboard.dispensasi.index', compact('dispensasi'));
+        $dispensasi = Dispensasi::with('santri')->get();
+        return view('dashboard.admin.dispensasi.index', compact('dispensasi'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function downloadPdf($id)
+    {
+        $dispensasi = Dispensasi::with('santri')->findOrFail($id);
+        $pdf = PDF::loadView('dashboard.admin.dispensasi.pdf', compact('dispensasi'));
+        return $pdf->download('izin.pdf');
+        
+    }
+
     public function create()
     {
-        // Ambil hanya santri yang aktif dan belum memiliki izin atau sakit
         $santris = Santri::where('status', 'aktif')
-                        ->whereNotIn('id', function ($query) {
-                            $query->select('id_santri')
-                                  ->from('dispensasi')
-                                  ->whereIn('status', ['izin', 'sakit']);
+                        ->whereDoesntHave('dispensasi', function ($query) {
+                            $query->whereIn('status', ['izin', 'sakit'])
+                                  ->whereNull('deleted_at');
                         })
                         ->get();
-        return view('dashboard.dispensasi.create', compact('santris'));
+        
+        if ($santris->isEmpty()) {
+            return redirect()->route('dispensasi.index')->with('error', 'Tidak ada santri yang tersedia untuk diberi dispensasi.');
+        }
+        
+        return view('dashboard.admin.dispensasi.create', compact('santris'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        // Validasi input
+        $validated = $request->validate([
             'id_santri' => 'required|exists:santris,id',
             'pulang_tanggal' => 'required|date',
-            'kembali_tanggal' => 'required|date',
-            'status' => 'required|in:izin,sakit',
-            'keterangan' => 'required|string',
-            'no_telp' => 'required|numeric',
+            'kembali_tanggal' => 'required|date|after:pulang_tanggal',
+            'status' => 'required|string',
+            'keterangan' => 'nullable|string',
+            'no_telp' => 'nullable|string',
         ]);
     
-        $santri = Santri::findOrFail($validatedData['id_santri']);
+        // Ambil data santri berdasarkan id_santri
+        $santri = Santri::find($request->id_santri);
     
+        // Buat record baru di tabel dispensasi
         Dispensasi::create([
-            'id_santri' => $validatedData['id_santri'],
+            'id_santri' => $santri->id,
             'nama' => $santri->nama,
             'jenjang' => $santri->jenjang,
             'kamar' => $santri->kamar,
-            'pulang_tanggal' => $validatedData['pulang_tanggal'],
-            'kembali_tanggal' => $validatedData['kembali_tanggal'],
-            'status' => $validatedData['status'],
-            'keterangan' => $validatedData['keterangan'],
-            'no_telp' => $validatedData['no_telp'],
+            'pulang_tanggal' => $validated['pulang_tanggal'],
+            'kembali_tanggal' => $validated['kembali_tanggal'],
+            'status' => $validated['status'],
+            'keterangan' => $validated['keterangan'],
+            'no_telp' => $validated['no_telp'],
         ]);
     
-        return redirect()->route('dispensasi.index')->with('success', 'Data dispensasi berhasil ditambahkan');
+        // Redirect atau lakukan tindakan lain setelah penyimpanan
+        return redirect()->route('dispensasi.index')->with('success', 'Dispensasi berhasil ditambahkan.');
     }
+    
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function edit(Dispensasi $dispensasi)
+{
+    return view('dashboard.admin.dispensasi.edit', compact('dispensasi'));
+}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+public function update(Request $request, Dispensasi $dispensasi)
+{
+    $validatedData = $request->validate([
+        'status' => 'required|in:izin,sakit,selesai',
+        'kembali_tanggal' => 'required|date',
+        'keterangan' => 'required|string',
+    ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    $dispensasi->update($validatedData);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    return redirect()->route('dispensasi.index')->with('success', 'Data dispensasi berhasil diperbarui');
+}
+
+public function show(Dispensasi $dispensasi)
+{
+    return view('dashboard.admin.dispensasi.show', compact('dispensasi'));
+}
     public function destroy($id)
     {
         $dispensasi = Dispensasi::findOrFail($id);
@@ -98,5 +105,72 @@ class DispensasiController extends Controller
     
         return redirect()->route('dispensasi.index')->with('success', 'Data dispensasi berhasil dihapus');
     }
-    
+
+    public function print($id)
+    {
+        $dispensasi = Dispensasi::with('santri')->findOrFail($id);
+        return view('dashboard.admin.dispensasi.print', compact('dispensasi'));
+    }
+
+    public function terlambat()
+{
+    $terlambat = Dispensasi::where('kembali_tanggal', '<', now())
+                           ->where('status', '!=', 'selesai')
+                           ->with('santri')
+                           ->get();
+
+    return view('dashboard.admin.dispensasi.terlambat', compact('terlambat'));
+}
+
+public function kembali($id)
+{
+    $dispensasi = Dispensasi::findOrFail($id);
+    $dispensasi->status = 'selesai';
+    $dispensasi->save();
+
+    return redirect()->route('dispensasi.index')->with('success', 'Status santri berhasil diperbarui menjadi kembali.');
+}
+
+
+public function export(Request $request)
+{
+    $filterType = $request->input('filter_type');
+    $exportTypes = $request->input('export_type', []);
+
+    if (empty($exportTypes)) {
+        return redirect()->back()->with('error', 'Pilih setidaknya satu jenis data untuk diekspor.');
+    }
+
+    switch ($filterType) {
+        case 'day':
+            $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+            $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
+            if (!$startDate || !$endDate) {
+                return redirect()->back()->with('error', 'Harap masukkan tanggal awal dan akhir.');
+            }
+            break;
+        case 'month':
+            $month = $request->input('month');
+            if (!$month) {
+                return redirect()->back()->with('error', 'Harap pilih bulan.');
+            }
+            $startDate = Carbon::createFromFormat('Y-m', $month)->startOfMonth();
+            $endDate = Carbon::createFromFormat('Y-m', $month)->endOfMonth();
+            break;
+        case 'year':
+            $year = $request->input('year');
+            if (!$year) {
+                return redirect()->back()->with('error', 'Harap masukkan tahun.');
+            }
+            $startDate = Carbon::createFromDate($year, 1, 1)->startOfYear();
+            $endDate = Carbon::createFromDate($year, 12, 31)->endOfYear();
+            break;
+        default:
+            return redirect()->back()->with('error', 'Filter tidak valid.');
+    }
+
+    $fileName = 'dispensasi_' . $startDate->format('Y-m-d') . '_to_' . $endDate->format('Y-m-d') . '.xlsx';
+
+    return Excel::download(new DispensasiExport($startDate, $endDate, $filterType, $exportTypes), $fileName);
+}
 }

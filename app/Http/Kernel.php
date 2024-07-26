@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
                'cek_login'=> \App\Http\Middleware\Cek_login::class,
                'redirect_if_authenticated' => \App\Http\Middleware\RedirectIfAuthenticated::class,
             //    'home' => \App\Http\Middleware\Home::class
+            
 
     ];
 }

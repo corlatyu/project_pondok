@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->string('id_santri');
         $table->string('nama');
-        $table->string('image')->nullable(); // Tambah kolom foto dan set nullable
+        $table->string('image')->nullable(); 
         $table->string('nik'); // Perbaiki tipe data kolom NIK
         $table->string('jenis_kelamin');
         $table->string('kelas');
@@ -30,8 +30,8 @@ return new class extends Migration
         $table->string('nama_ibu');
         $table->string('nomer_telp_orangtua');
         $table->string('no_kk');
-        $table->boolean('santri_aktif')->default(true);
-        $table->boolean('santri_pulang')->default(false);
+        // $table->boolean('santri_aktif')->default(true);
+        // $table->boolean('santri_pulang')->default(false);
         $table->timestamps();
     });
 }

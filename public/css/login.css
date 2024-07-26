@@ -1,0 +1,153 @@
+body {
+  background-color: #fafafa;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-container, .register-container {
+  text-align: center;
+  width: 100%;
+  background-color: #fff;
+  padding: 40px;
+  border: 1px solid #dbdbdb;
+  border-radius: 1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container {
+  max-width: 350px;
+}
+
+.register-container {
+  max-width: 400px;
+}
+
+.login-container img, .register-container img {
+  width: 100%;
+  max-width: 175px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+
+h3 {
+  font-size: 24px;
+  color: #262626;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #262626;
+}
+
+input {
+  width: 100%;
+  padding: 9px 8px 7px;
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #a8a8a8;
+}
+
+button {
+  width: 100%;
+  padding: 7px 16px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button {
+  background-color: #198754;
+}
+
+.login-container button:hover {
+  background-color: #157347;
+}
+
+.register-container button {
+  background-color: #198754;
+}
+
+.register-container button:hover {
+  background-color: #157347;
+}
+
+.links, .card-footer {
+  margin-top: 20px;
+  font-size: 12px;
+  padding-top: 20px;
+  border-top: 1px solid #dbdbdb;
+}
+
+a {
+  text-decoration: none;
+  color: #00376b;
+  font-weight: bold;
+}
+
+.alert {
+  background-color: #ffeaea;
+  border: 1px solid #ffcccb;
+  color: #cc0000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.invalid-feedback {
+  color: #cc0000;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 450px) {
+  body {
+    background-color: #fafafa; /* Kembalikan warna latar belakang */
+  }
+  
+  .login-container, .register-container {
+    padding: 20px;
+    border: 1px solid #dbdbdb; /* Pertahankan border */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Pertahankan box shadow */
+    max-width: 100%; /* Pastikan container tidak melebihi lebar layar */
+  }
+  
+  input, button {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .login-container img, .register-container img {
+    max-width: 130px; /* Sedikit lebih kecil untuk layar mobile */
+    margin-bottom: 20px; /* Kurangi margin bawah pada mobile */
+  }
+}

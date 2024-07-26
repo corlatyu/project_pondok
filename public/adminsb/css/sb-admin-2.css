@@ -73,6 +73,252 @@ body {
   outline: 0 !important;
 }
 
+/* Default (light mode) styles */
+.sidebar {
+  background-color: #4e73df; /* Primary color */
+}
+
+
+/* Dark mode styles */
+body.dark-mode,
+body.dark-mode .content-wrapper,
+body.dark-mode .container-fluid,
+body.dark-mode #wrapper #content-wrapper {
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .navbar {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .sidebar,
+body.dark-mode .card,
+body.dark-mode .modal-content,
+body.dark-mode .dropdown-menu {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
+
+body.dark-mode .card-header,
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+  background-color: #444;
+  border-color: #3c3c3c;
+}
+
+body.dark-mode .text-gray-300,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-800 {
+  color: #cccccc !important;
+}
+
+body.dark-mode .bg-white {
+  background-color: #2c2c2c !important;
+}
+
+body.dark-mode .border-left-primary,
+body.dark-mode .border-left-success,
+body.dark-mode .border-left-info,
+body.dark-mode .border-left-warning,
+body.dark-mode .border-left-danger {
+  border-left-color: #4e73df;
+}
+
+body.dark-mode .navbar .nav-link,
+body.dark-mode .navbar .dropdown-item,
+body.dark-mode .navbar .nav-link .fas,
+body.dark-mode .sidebar .nav-link {
+  color: #e0e0e0;
+}
+
+body.dark-mode .sidebar .nav-link:hover,
+body.dark-mode .sidebar .nav-link.active,
+body.dark-mode .sidebar .collapse,
+body.dark-mode .sidebar .collapse .collapse-inner {
+  background-color: #333;
+}
+
+body.dark-mode .sidebar .nav-link.active {
+  color: #ffffff;
+}
+
+body.dark-mode .sidebar .collapse .collapse-inner .collapse-header,
+body.dark-mode .sidebar .collapse .collapse-inner .collapse-item {
+  color: #e0e0e0;
+}
+
+body.dark-mode .sidebar .collapse .collapse-inner .collapse-item:hover,
+body.dark-mode .sidebar .collapse .collapse-inner .collapse-item.active {
+  background-color: #444;
+}
+
+body.dark-mode .sidebar .collapse .collapse-inner .collapse-item.active {
+  color: #ffffff;
+}
+
+body.dark-mode .input-group .form-control {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-mode .input-group .btn-primary {
+  background-color: #444;
+  border-color: #555;
+}
+
+body.dark-mode .topbar-divider {
+  border-left: 1px solid #444;
+}
+
+body.dark-mode .img-profile {
+  border: 2px solid #444;
+}
+
+body.dark-mode .scroll-to-top {
+  background-color: #444;
+  border-color: #555;
+}
+
+body.dark-mode .container-fluid {
+  border-color: #555;
+}
+
+/* Tambahan untuk memastikan teks dalam tabel berwarna putih */
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode .table {
+  color: #ffffff !important;
+  border-color: #444;
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .table-hover tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+/* Memastikan semua teks dalam mode gelap berwarna putih */
+body.dark-mode *:not(.fa):not(.fas):not(.far):not(.fab) {
+  color: #ffffff !important;
+}
+
+/* Pengecualian untuk link */
+body.dark-mode a:not(.btn) {
+  color: #9ecbff !important;
+}
+
+body.dark-mode a:not(.btn):hover {
+  color: #bbd6ff !important;
+}
+
+/* Memastikan teks dalam form input tetap terlihat */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #333 !important;
+  color: #ffffff !important;
+  border-color: #555 !important;
+}
+
+/* Pagination styles for dark mode */
+body.dark-mode .pagination .page-link {
+  color: white !important;
+  background-color: #333;
+  border-color: #555;
+}
+
+body.dark-mode .pagination .page-item.active .page-link {
+  background-color: #ffffff33;
+  border-color: #ffffff33;
+  color: white !important;
+}
+
+body.dark-mode .pagination .page-item.disabled .page-link {
+  color: #ffffff !important;
+  background-color: #333;
+  border-color: #555;
+}
+
+
+/* ==================CHART=============== */
+
+/* Atur warna teks untuk mode gelap */
+body.dark-mode .apexcharts-text tspan,
+body.dark-mode .apexcharts-title-text,
+body.dark-mode .apexcharts-subtitle-text,
+body.dark-mode .apexcharts-legend-text,
+body.dark-mode .apexcharts-xaxis-label,
+body.dark-mode .apexcharts-yaxis-label {
+    fill: #ffffff !important;
+}
+
+/* Atur warna latar belakang chart */
+body.dark-mode .apexcharts-plot-area,
+body.dark-mode .apexcharts-canvas {
+  background-color: #1c1c1c !important;
+}
+
+/* Atur warna grid */
+body.dark-mode .apexcharts-grid line {
+    stroke: #444444 !important;
+}
+
+/* Atur warna tooltip */
+body.dark-mode .apexcharts-tooltip {
+    background-color: #333333 !important;
+    border-color: #555555 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .apexcharts-tooltip-title {
+    background-color: #444444 !important;
+    border-color: #555555 !important;
+}
+
+/* Atur warna bar (untuk bar chart) */
+body.dark-mode .apexcharts-bar-area {
+    fill: #3498db !important;
+}
+
+/* Atur warna hover untuk bar */
+body.dark-mode .apexcharts-bar-area:hover {
+    fill: #2980b9 !important;
+}
+
+/* Atur warna untuk legend markers */
+body.dark-mode .apexcharts-legend-marker {
+    color: #ffffff !important;
+}
+
+/* Atur warna untuk tombol zoom */
+body.dark-mode .apexcharts-zoom-icon svg,
+body.dark-mode .apexcharts-zoomin-icon svg,
+body.dark-mode .apexcharts-zoomout-icon svg,
+body.dark-mode .apexcharts-reset-icon svg,
+body.dark-mode .apexcharts-menu-icon svg {
+    fill: #ffffff !important;
+}
+
+/* Atur warna untuk menu zoom */
+body.dark-mode .apexcharts-menu {
+    background-color: #333333 !important;
+    border-color: #555555 !important;
+}
+
+body.dark-mode .apexcharts-menu-item:hover {
+    background-color: #444444 !important;
+}
+
+/* ===============END CHART========= */
+
+
 hr {
   box-sizing: content-box;
   height: 0;

@@ -9,11 +9,6 @@ class Santri extends Model
 {
     use HasFactory;
 
-    /**
-     * fillable
-     *
-     * @var array
-     */
     protected $fillable = [
         'id_santri',
         'nama',
@@ -23,7 +18,7 @@ class Santri extends Model
         'kamar',
         'jenjang',
         'tempat_lahir',
-        'tanggal_lahir', // <- Add a comma here
+        'tanggal_lahir', // Koma terakhir dihapus
         'alamat',
         'provinsi',
         'kabupaten',
@@ -33,4 +28,9 @@ class Santri extends Model
         'no_kk',
         'status',
     ];
+
+    public function dispensasi()
+    {
+        return $this->hasMany(Dispensasi::class, 'id_santri');
+    }
 }

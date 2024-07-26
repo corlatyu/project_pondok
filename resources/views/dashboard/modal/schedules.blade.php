@@ -7,7 +7,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-            <form method="POST" action="{{ route('schedules.post') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('schedules.store') }}" enctype="multipart/form-data">
                 @csrf
                 <label for="">Event</label>
                 <input class="form-control mb-2" type="text" required name="event" value="{{ old('event') }}">

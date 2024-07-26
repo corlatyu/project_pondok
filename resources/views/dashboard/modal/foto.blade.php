@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <img src="{{ asset('storage/foto_santri/'.$data->image) }}" alt="Foto Santri" class="img-fluid">
+                <img src="{{ url('foto_santri/' . $data->image) }}" alt="Foto Santri" class="img-fluid">
         </div>
       </div>
     </div>

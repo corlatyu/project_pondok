@@ -16,7 +16,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $data = Schedule::all();
-        return view('dashboard.pengumuman.index', compact('data'));
+        return view('dashboard.admin.pengumuman.index', compact('data'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ScheduleController extends Controller
 
         Schedule::create($request->all());
 
-        return redirect()->route('schedule.index')->with('success', 'Pengumuman berhasil disimpan.');
+        return redirect()->route('schedules.index')->with('success', 'Pengumuman berhasil disimpan.');
     }
 
         /**
@@ -47,7 +47,7 @@ class ScheduleController extends Controller
     public function edit($id)
     {
         $schedule = Schedule::findOrFail($id);
-        return view('dashboard.pengumuman.edit', compact('schedule'));
+        return view('dashboard.admin.pengumuman.edit', compact('schedule'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ScheduleController extends Controller
         $schedule = Schedule::findOrFail($id);
         $schedule->update($request->all());
 
-        return redirect()->route('schedule.index')->with('success', 'Pengumuman berhasil diperbarui.');
+        return redirect()->route('schedules.index')->with('success', 'Pengumuman berhasil diperbarui.');
     }
 
     /**
@@ -81,7 +81,7 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::findOrFail($id);
         $schedule->delete();
-        return redirect()->route('schedule.index')->with('success', 'Data Pengumuman berhasil dihapus!');
+        return redirect()->route('schedules.index')->with('success', 'Data Pengumuman berhasil dihapus!');
 
     }
 

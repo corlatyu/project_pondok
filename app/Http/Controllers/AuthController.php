@@ -33,44 +33,39 @@ class AuthController extends Controller
         return view('auth.login');
      }
     //
-    public function proses_login(Request $request){
-      // kita buat validasi pada saat tombol login di klik
-      // validas nya username & password wajib di isi 
-        $request->validate([
-            'username'=>'required',
-            'password'=>'required'
-        ]);
-    
-       
-       // ambil data request username & password saja 
-        $credential = $request->only('username','password');
+  public function proses_login(Request $request){
+    // Validasi input username dan password
+    $request->validate([
+        'username' => 'required',
+        'password' => 'required'
+    ]);
 
-      // cek jika data username dan password valid (sesuai) dengan data
-        if(Auth::attempt($credential)){
-           // kalau berhasil simpan data user ya di variabel $user
-            $user =  Auth::user();
-            // cek lagi jika level user admin maka arahkan ke halaman admin
-            if($user->level =='admin'){
-                return redirect()->intended('admin');
+    // Ambil data request username & password saja
+    $credential = $request->only('username', 'password');
 
-            }
-                // tapi jika level user nya user biasa maka arahkan ke halaman user
-               else if($user->level =='user'){
-                return redirect()->intended('user');
-            }
-             // jika belum ada role maka ke halaman /
-            return redirect()->intended('/');
+    // Cek jika data username dan password valid (sesuai) dengan data
+    if(Auth::attempt($credential)){
+        // Kalau berhasil simpan data usernya di variabel $user
+        $user = Auth::user();
+        // Cek lagi jika level user admin maka arahkan ke halaman admin
+        if($user->level == 'admin'){
+            return redirect()->intended('admin');
         }
+        // Tapi jika level usernya user biasa maka arahkan ke halaman user
+        else if($user->level == 'user'){
+            return redirect()->intended('user');
+        }
+        // Jika belum ada role maka ke halaman /
+        return redirect()->intended('/');
+    }
 
-// jika ga ada data user yang valid maka kembalikan lagi ke halaman login
-// pastikan kirim pesan error juga kalau login gagal ya
-        return redirect('login')
-            ->withInput()
-            ->withErrors(['login_gagal'=>'These credentials does not match our records']);
+    // Jika tidak ada data user yang valid maka kembalikan lagi ke halaman login
+    // Kirim pesan error kalau login gagal
+    return redirect('login')
+        ->withInput()
+        ->with('login_gagal', 'Password salah');
+}
 
-
-
-     }
 
      public function register(){
       // tampilkan view register
@@ -104,18 +99,27 @@ class AuthController extends Controller
         User::create($request->all());
 
          // kalo berhasil arahkan ke halaman login
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
       }
 
-     public function logout(Request $request){
-// logout itu harus menghapus session nya 
+     public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 
-        $request->session()->flush();
-
-// jalan kan juga fungsi logout pada auth 
-
-        Auth::logout();
-// kembali kan ke halaman login
-        return Redirect('/');
-      }
+    public function logoutGet()
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->level == 'admin') {
+            return redirect()->route('admin.index');
+        } elseif ($user->level == 'user') {
+            return redirect()->route('user.index');
+        }
+    }
+    return redirect()->route('login');
+}
 }
